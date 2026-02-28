@@ -4,7 +4,7 @@ echo Install rpitx - some package need internet connection -
 
 sudo apt-get update
 sudo apt-get install -y libsndfile1-dev git
-sudo apt-get install -y imagemagick libfftw3-dev libraspberrypi-dev
+sudo apt-get install -y imagemagick libfftw3-dev
 #For rtl-sdr use
 sudo apt-get install -y rtl-sdr buffer
 # We use CSDR as a dsp for analogs modes thanks to HA7ILM
@@ -16,7 +16,7 @@ cd ../ || exit
 cd src || exit
 git clone https://github.com/F5OEO/librpitx
 cd librpitx/src || exit
-make && sudo make install
+sudo make install
 cd ../../ || exit
 
 cd pift8
@@ -42,7 +42,7 @@ if [ "$CONT" = "y" ]; then
    echo "Raspbian 11 or below detected using /boot/config.txt"
    FILE='/boot/config.txt'
    else
-   echo "Raspbian 12 detected using /boot/firmware/config.txt"
+   echo "Raspbian 12 or later detected using /boot/firmware/config.txt"
    FILE='/boot/firmware/config.txt'
    fi
    grep -qF "$LINE" "$FILE"  || echo "$LINE" | sudo tee --append "$FILE"
